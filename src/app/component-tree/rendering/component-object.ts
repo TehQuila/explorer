@@ -18,12 +18,13 @@ export class ComponentObject extends ComponentTreeObject {
   }
 
   drawOnBuffer(debugging: boolean = false): void {
+
     const ctx = this.bufferCanvas.getContext('2d');
     if (ctx != null) {
       const w = this.calculateWidth(debugging, ctx);
       const h = this.calculateHeight(debugging, ctx);
       this.bufferCanvas.height = h;
-      this.bufferCanvas.width = w + 1; // todo: width is off
+      this.bufferCanvas.width = w;
 
       ctx.save();
       // background
@@ -48,11 +49,20 @@ export class ComponentObject extends ComponentTreeObject {
 
       ctx.restore();
     } else {
-      throwError(new Error("Rendering Context not initialized."))
+      throwError(() => new Error("Rendering Context not initialized."))
     }
   }
 
-  private calculateHeight(debugging: boolean, ctx: CanvasRenderingContext2D) {
+  public getSubComponent(gid: number): ComponentObject|null {
+    for (const comp of this.components) {
+      if (comp.gid == gid) {
+        return comp
+      }
+    }
+    return null
+  }
+
+  private calculateHeight(debugging: boolean, ctx: CanvasRenderingContext2D): number {
     ctx.save();
     ctx.font = '10px JetBrains Mono';
     let textMetrics = ctx.measureText(this.name);
@@ -71,7 +81,7 @@ export class ComponentObject extends ComponentTreeObject {
     return h;
   }
 
-  private calculateWidth(debugging: boolean, ctx: CanvasRenderingContext2D) {
+  private calculateWidth(debugging: boolean, ctx: CanvasRenderingContext2D): number {
     ctx.save();
     ctx.font = '10px JetBrains Mono';
     let textMetrics = ctx.measureText(this.name);

@@ -30,14 +30,12 @@ export class CanvasComponent implements AfterViewInit {
   private readonly minScale: number;
 
   // viewport in ctx-coords
-  relations: Array<RelationObject>;  // todo: refactor
   public get vpOrigin(): [number, number] { return [-this.ctxService.ctxOrigin[0], -this.ctxService.ctxOrigin[1]]; }
   public get vpDims(): [number, number] { return [this.canvas.width / this.ctxService.scale, this.canvas.height / this.ctxService.scale]; }
   public get vpCenter(): [number, number] { return [this.vpOrigin[0] + this.vpDims[0] / 2, this.vpOrigin[1] + this.vpDims[1] / 2]; }
 
   constructor(private ctxService: RenderingContextService) {
     this.objects = new Map<number, CanvasObject>();
-    this.relations = new Array<RelationObject>();  // todo: refactor
     this.panning = false;
     this.dragging = false;
     this.lastMousePos = [0, 0];
@@ -54,14 +52,14 @@ export class CanvasComponent implements AfterViewInit {
     this.canvas.height = 900; // window.innerHeight;
 
     // get bounding box of canvas element in html coords
-    const canvasBbox: ClientRect = this.canvas.getBoundingClientRect();
+    const canvasBbox: DOMRect = this.canvas.getBoundingClientRect();
     this.offset = [canvasBbox.left, canvasBbox.top];
 
     const ctx = this.canvas.getContext('2d');
     if (ctx != null) {
       this.ctxService.context = ctx
     } else {
-      throwError("rendering context was null")
+      throwError(() => Error("rendering context was null"))
     }
     this.ctxService.translate(this.vpCenter);
   }
@@ -114,13 +112,6 @@ export class CanvasComponent implements AfterViewInit {
       this.drawViewportCenter();
     }
 
-    // todo: refactor
-    /*
-    this.relations.forEach(rel => {
-      rel.draw(this.ctxService.context);
-    });
-     */
-
     for (const [, obj] of this.objects) {
         if (obj.isVisible(this.vpOrigin, this.vpDims)) {
           this.ctxService.draw(obj);
@@ -138,6 +129,30 @@ export class CanvasComponent implements AfterViewInit {
     this.redrawCanvas();
   }
 
+  /*
+    // todo: only debugging
+    if (obj instanceof RelationObject) {
+      console.log("drawing line from " + obj.path[0] + " to " + obj.path[1])
+      const ctx = this.ctxService.context
+      ctx.save()
+      ctx.beginPath();
+      ctx.moveTo(obj.path[0][0], obj.path[0][1])
+      for (let i = 1; i < obj.path.length; i++) {
+        ctx.lineTo(obj.path[i][0], obj.path[i][1]);
+      }
+      ctx.stroke();
+      ctx.restore();
+    } else {
+      obj.settings = new RenderSettings()
+      obj.buffer = document.createElement('canvas');
+      obj.drawOnBuffer(this.debugging);
+
+      this.objects.set(obj.id, obj);
+    }
+
+    this.redrawCanvas();
+   */
+
   // returns the gid of the canvas-object that
   private getObjectID(event: MouseEvent): number {
     const mousePos = this.convertHtmlCoordsToCtxCoords(this.getMouseCoords(event));
@@ -151,7 +166,7 @@ export class CanvasComponent implements AfterViewInit {
     return -1;
   }
 
-  // return mouse coords in html-coords
+  // return mouse coords translated from client-coords to html-coords
   private getMouseCoords(event: MouseEvent | WheelEvent): [number, number] {
     return [event.clientX - this.offset[0], event.clientY - this.offset[1]];
   }

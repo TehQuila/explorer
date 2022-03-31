@@ -31,26 +31,28 @@ export class ParserService {
         new ComponentObject(117, 0, "test-117", "test-100.test-117", [0, 0], [], [], []),
         new ComponentObject(118, 0, "test-118", "test-100.test-118", [0, 0], [], [], [])
       ], [], [
-        new RelationObject(101, 102, [], "", ""),
-        new RelationObject(102, 103, [], "", ""),
-        new RelationObject(103, 104, [], "", ""),
-        new RelationObject(104, 105, [], "", ""),
-        new RelationObject(105, 106, [], "", ""),
-        new RelationObject(106, 107, [], "", ""),
-        new RelationObject(107, 108, [], "", ""),
-        new RelationObject(108, 101, [], "", ""),
-        new RelationObject(108, 109, [], "", ""),
-        new RelationObject(109, 110, [], "", ""),
-        new RelationObject(110, 105, [], "", ""),
-        new RelationObject(110, 111, [], "", ""),
-        new RelationObject(111, 112, [], "", ""),
-        new RelationObject(112, 113, [], "", ""),
-        new RelationObject(113, 109, [], "", ""),
-        new RelationObject(113, 114, [], "", ""),
-        new RelationObject(114, 115, [], "", ""),
-        new RelationObject(114, 116, [], "", ""),
-        new RelationObject(116, 117, [], "", ""),
-        new RelationObject(116, 118, [], "", "")
+        new RelationObject(119, 101, 102, [], "", ""),
+        new RelationObject(120, 102, 103, [], "", ""),
+        new RelationObject(121, 103, 104, [], "", ""),
+        new RelationObject(122, 104, 105, [], "", ""),
+        new RelationObject(123, 105, 106, [], "", ""),
+        new RelationObject(124, 106, 107, [], "", ""),
+        new RelationObject(125, 107, 108, [], "", ""),
+        new RelationObject(126, 108, 101, [], "", ""),
+        new RelationObject(127, 108, 109, [], "", ""),
+        new RelationObject(128, 109, 110, [], "", ""),
+        new RelationObject(129, 110, 105, [], "", ""),
+        new RelationObject(131, 110, 111, [], "", ""),
+        new RelationObject(132, 111, 112, [], "", ""),
+        new RelationObject(133, 112, 113, [], "", ""),
+        new RelationObject(134, 113, 109, [], "", ""),
+        /*
+        new RelationObject(135, 113, 114, [], "", ""),
+        new RelationObject(136, 114, 115, [], "", ""),
+        new RelationObject(137, 114, 116, [], "", ""),
+        new RelationObject(138, 116, 117, [], "", ""),
+        new RelationObject(139, 116, 118, [], "", "")
+         */
       ]);
   }
 

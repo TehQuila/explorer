@@ -26,7 +26,8 @@ export class RenderingContextService {
     this.origin[1] += pan[1];
   }
 
-  // zomes to point "scaling" current scale by zoom
+  // zooms to point "scaling" current scale by zoom
+  // todo: prevent coords from being floating point numbers
   public zoomTo(point: [number, number], zoom: number) {
     const newScale = this.scl * zoom;
     const scaleChange = -(newScale - this.scl);

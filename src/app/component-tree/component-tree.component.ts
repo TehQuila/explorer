@@ -29,17 +29,29 @@ export class ComponentTreeComponent implements AfterViewInit {
     }
     const rels = new Array<[number, number]>();
     for (const rel of this.current.relations) {
-      rels.push([rel.from, rel.to])
+      rels.push([rel.fromGid, rel.toGid])
     }
-    console.log(dims)
-    console.log(rels)
 
     this.layoutService.getLayout(dims, rels).subscribe((res) => {
-      console.log(res)
       const layt = new Map(Object.entries(res))
+
       for (const comp of this.current.components) {
         comp.pos = layt.get(comp.gid.toString())
+        console.log("pos=(" + comp.pos + ")")
       }
+
+      for (let rel of this.current.relations) {
+        // todo: connect to components positions
+        // const from = this.current.getSubComponent(rel.fromGid)
+        //  const to = this.current.getSubComponent(rel.toGid)
+        const fromPos = layt.get(rel.fromGid.toString())
+        const toPos = layt.get(rel.toGid.toString())
+        rel.pathGlobal[0] = [Number(fromPos[0]), Number(fromPos[1])]
+        rel.pathGlobal[1] = [Number(toPos[0]), Number(toPos[1])]
+
+        this.canvas.addObject(rel)
+      }
+
       this.canvas.redrawCanvas()
     })
   }
@@ -49,11 +61,6 @@ export class ComponentTreeComponent implements AfterViewInit {
 
     for (let c of current.components) {
       this.initializeComponentTree(c)
-    }
-
-    // todo: refactor
-    for (let r of current.relations) {
-      this.canvas.relations.push(r)
     }
   }
 }

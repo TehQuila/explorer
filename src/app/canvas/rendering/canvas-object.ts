@@ -1,6 +1,7 @@
 import { RenderSettings } from "./render-settings";
 
 export interface CanvasObject {
+  gid: number
   bufferCanvas: HTMLCanvasElement;
   renderSettings: RenderSettings;
 
@@ -10,7 +11,7 @@ export interface CanvasObject {
   set settings(s: RenderSettings)
   get settings(): RenderSettings
 
-  get gid(): number
+  get id(): number
   get x(): number
   set x(val: number)
   get y(): number

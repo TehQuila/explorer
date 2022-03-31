@@ -77,7 +77,7 @@ export class ClassObject extends ComponentTreeObject {
 
         ctx.restore();
       } else {
-        throwError(new Error("Rendering Context not initialized."))
+        throwError(() => new Error("Rendering Context not initialized."))
       }
     }
 

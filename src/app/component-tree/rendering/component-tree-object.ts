@@ -25,6 +25,7 @@ export abstract class ComponentTreeObject implements CanvasObject {
   set settings(s: RenderSettings) { this.renderSettings = s }
   get settings(): RenderSettings { return this.renderSettings }
 
+  get id(): number { return this.gid }
   get x(): number { return this.coords[0] }
   set x(val: number) { this.coords[0] = val; }
   get y(): number { return this.coords[1] }
