@@ -36,8 +36,9 @@ export class ComponentTreeComponent implements AfterViewInit {
       const layt = new Map(Object.entries(res))
 
       for (const comp of this.current.components) {
-        comp.pos = layt.get(comp.gid.toString())
-        console.log("pos=(" + comp.pos + ")")
+        // adjust positions, so that center of nodes lays on coords
+        const pos = layt.get(comp.gid.toString())
+        comp.pos = [Math.round(Number(pos[0]) - comp.w/2), Math.round(Number(pos[1]) - comp.h/2)]
       }
 
       for (let rel of this.current.relations) {

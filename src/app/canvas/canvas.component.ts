@@ -103,6 +103,7 @@ export class CanvasComponent implements AfterViewInit {
     this.lastMousePos = mousePos;
   }
 
+  // todo: let different objects have different precedence. or figure out system of layers
   redrawCanvas() {
     this.ctxService.context.clearRect(this.vpOrigin[0], this.vpOrigin[1], this.vpDims[0], this.vpDims[1]);
 

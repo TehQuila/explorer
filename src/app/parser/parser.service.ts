@@ -11,25 +11,27 @@ export class ParserService {
 
   public getComponentTree(): ComponentObject{
     return new ComponentObject(
-      100, 0, "test-100", "test-100", [0, 0], [
+      100, 0, "test-100", "test-100", [700, 700], [
         new ComponentObject(101, 0, "test-101", "test-100.test-101", [0, 0], [], [], []),
-        new ComponentObject(102, 0, "test-102", "test-100.test-102", [0, 0], [], [], []),
-        new ComponentObject(103, 0, "test-103", "test-100.test-103", [0, 0], [], [], []),
-        new ComponentObject(104, 0, "test-104", "test-100.test-104", [0, 0], [], [], []),
-        new ComponentObject(105, 0, "test-105", "test-100.test-105", [0, 0], [], [], []),
-        new ComponentObject(106, 0, "test-106", "test-100.test-106", [0, 0], [], [], []),
-        new ComponentObject(107, 0, "test-107", "test-100.test-107", [0, 0], [], [], []),
-        new ComponentObject(108, 0, "test-108", "test-100.test-108", [0, 0], [], [], []),
-        new ComponentObject(109, 0, "test-109", "test-100.test-109", [0, 0], [], [], []),
-        new ComponentObject(110, 0, "test-110", "test-100.test-110", [0, 0], [], [], []),
-        new ComponentObject(111, 0, "test-111", "test-100.test-111", [0, 0], [], [], []),
-        new ComponentObject(112, 0, "test-112", "test-100.test-112", [0, 0], [], [], []),
-        new ComponentObject(113, 0, "test-113", "test-100.test-113", [0, 0], [], [], []),
+        new ComponentObject(102, 1, "test-102", "test-100.test-102", [0, 0], [], [], []),
+        new ComponentObject(103, 2, "test-103", "test-100.test-103", [0, 0], [], [], []),
+        new ComponentObject(104, 3, "test-104", "test-100.test-104", [0, 0], [], [], []),
+        new ComponentObject(105, 4, "test-105", "test-100.test-105", [0, 0], [], [], []),
+        new ComponentObject(106, 5, "test-106", "test-100.test-106", [0, 0], [], [], []),
+        new ComponentObject(107, 6, "test-107", "test-100.test-107", [0, 0], [], [], []),
+        new ComponentObject(108, 7, "test-108", "test-100.test-108", [0, 0], [], [], []),
+        new ComponentObject(109, 8, "test-109", "test-100.test-109", [0, 0], [], [], []),
+        new ComponentObject(110, 9, "test-110", "test-100.test-110", [0, 0], [], [], []),
+        new ComponentObject(111, 10, "test-111", "test-100.test-111", [0, 0], [], [], []),
+        new ComponentObject(112, 11, "test-112", "test-100.test-112", [0, 0], [], [], []),
+        new ComponentObject(113, 12, "test-113", "test-100.test-113", [0, 0], [], [], []),
+        /*
         new ComponentObject(114, 0, "test-114", "test-100.test-114", [0, 0], [], [], []),
         new ComponentObject(115, 0, "test-115", "test-100.test-115", [0, 0], [], [], []),
         new ComponentObject(116, 0, "test-116", "test-100.test-116", [0, 0], [], [], []),
         new ComponentObject(117, 0, "test-117", "test-100.test-117", [0, 0], [], [], []),
         new ComponentObject(118, 0, "test-118", "test-100.test-118", [0, 0], [], [], [])
+         */
       ], [], [
         new RelationObject(119, 101, 102, [], "", ""),
         new RelationObject(120, 102, 103, [], "", ""),

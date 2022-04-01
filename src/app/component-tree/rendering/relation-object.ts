@@ -44,15 +44,6 @@ export class RelationObject implements CanvasObject {
 
     let ctx = this.bufferCanvas.getContext('2d')
     if (ctx != null) {
-      // make background transparent
-
-      ctx.save();
-      /*
-      ctx.fillStyle = this.renderSettings.background;
-      ctx.fillRect(0, 0, this.w, this.h);
-      ctx.fillStyle = this.renderSettings.fontColor
-       */
-
       // convert path with global coordinates
       const minX = Math.min(this.pathGlobal[0][0], this.pathGlobal[1][0]);
       const minY = Math.min(this.pathGlobal[0][1], this.pathGlobal[1][1]);
@@ -61,6 +52,7 @@ export class RelationObject implements CanvasObject {
         [this.pathGlobal[1][0]-minX, this.pathGlobal[1][1]-minY]
       ]
 
+      ctx.save();
       ctx.beginPath(); // this need to be translated so that min(X0
       ctx.moveTo(pathLocal[0][0], pathLocal[0][1]);
       for (let i = 1; i < pathLocal.length; i++) {
@@ -84,6 +76,7 @@ export class RelationObject implements CanvasObject {
 
   // todo: bounding box for mouse over on line
   isUnder(point: [number, number]): boolean {
+    return false
     const pointWithinWidth = this.x <= point [0] && point[0] <= this.x + this.w;
     const pointWithinHeight = this.y <= point[1] && point[1] <= this.y + this.h;
     const under = pointWithinWidth && pointWithinHeight
